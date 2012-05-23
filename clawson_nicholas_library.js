@@ -46,12 +46,17 @@ var nixLib = function (){
 
 	};
 
+	var stringToNumber = function (sNum){ //takes a string version of a number value and returns the actual Number
 
+		var num = parseFloat(sNum); //parseFloat returns a number from a string value regardless if it has a decimal or not. parseInt returns only integers
+
+		return num;
+	};
 
 	return {
 		"checkPhone": checkPhone,
 		"checkEmail": checkEmail,
 		"roundDecimal": roundDecimal,
-
+		"stringToNumber": stringToNumber
 	};
 };

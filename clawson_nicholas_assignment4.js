@@ -14,7 +14,9 @@ console.log("email test: " + lib.checkEmail(email));
 console.log("rounding test: " + lib.roundDecimal(num, 2));
 
 
-
+//stringToNumber function test
+var numb = lib.stringToNumber("45.76") + 5; //performed basic arithmetic to determine if value was being returned properly
+console.log ("parse test: " + numb);
 
 
 
