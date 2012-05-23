@@ -1,6 +1,6 @@
 var nixLib = function (){
 	
-	var checkPhone = function (phone){
+	var checkPhone = function (phone){ //checks if a string matches a NANP phone number pattern
 
 		/* RegExp below explained:
 		^([0-9]{3}) checks that first 3 characters are digits 0-9, 
@@ -9,17 +9,18 @@ var nixLib = function (){
 		[-]? checks for dash but is optional,
 		([0-9]{4})$ checks that the last 4 characters are digits 0-9*/
 		var pattern = new RegExp("^([0-9]{3})[-]?([0-9]{3})[-]?([0-9]{4})$"); 
-		if (pattern.test(phone)){
+		
+		if (pattern.test(phone)){ //checking if arguement matches regular expression
 
-			return true;
+			return true; //returns true if arguement matches regular expression
 		}
 		else{
 
-			return false;
+			return false; //returns false if arguement does not match regular expression
 		};
 	};
 
-	var checkEmail = function (email){
+	var checkEmail = function (email){ //checks if a string matches a standard email address pattern
 
 		/* RegExp below explained:
 		^([a-zA-Z0-9_\.\-]) checks that the beginning the of string contains any letter, digit, underscore, period or dash. 
@@ -29,18 +30,28 @@ var nixLib = function (){
 		([a-zA-Z]{3})$ checks that the last 3 characters are any letter*/
 		var pattern = new RegExp("^([a-zA-Z0-9_\.\-])+[@]([a-zA-Z0-9])+[\.]([a-zA-Z]{3})$");
 		
-		if (pattern.test(email)){
+		if (pattern.test(email)){ //checking if arguement matches regular expression
 
-			return true;
+			return true; //returns true if arguement matches regular expression
 		}
 		else{
 
-			return false;
+			return false; //returns false if arguement does not match regular expression
 		};
 	};
 
+	var roundDecimal = function (num, places){ //rounds a given number arguement to a given decimal place
+
+			return num.toFixed(places); //returns a number rounded to a given decimal place
+
+	};
+
+
+
 	return {
 		"checkPhone": checkPhone,
-		"checkEmail": checkEmail
+		"checkEmail": checkEmail,
+		"roundDecimal": roundDecimal,
+
 	};
 };
