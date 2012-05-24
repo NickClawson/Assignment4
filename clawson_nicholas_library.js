@@ -48,12 +48,12 @@ var nixLib = function (){ //new library
 
 		/* RegExp below explained:
 		^(?:http:\/\/])? checks if beginning of string begins with http:// or https://. it is optional. 
-		(?:www\.)? checks for "www." it is optional.
+		(www\.)? checks for "www." it is optional.
 		([a-zA-Z0-9\.\-]) checks site name for any alphanumerics, literal . and literal -
 		([a-zA-Z0-9]{2,4}) checks last 2 to 4 characters of domain name for any alphanumeric
 		([\/\?\$\&\=\_\.a-zA-Z0-9]?) checks for optional special characters and alphanumerics in web address following main domain name*/
-		var pattern = new RegExp("^(?:http:\/\/)?(?:www\.)?([a-zA-Z0-9\.\-])([a-zA-Z0-9]{2,4})([\/\?\$\&\=\_\.a-zA-Z0-9]?)"); //explained above
-    	
+		var pattern = new RegExp("^(?:http:\/\/)?((www)+\.)?([a-zA-Z0-9\.\-])([a-zA-Z0-9]{2,4})([\/\?\$\&\=\_\.a-zA-Z0-9]?)"); //explained above
+
     	 if (pattern.test(url)){ //checking if arguement matches regular expression
 
     	 	return true; //returns true if arguement matches regular expression
@@ -87,9 +87,9 @@ var nixLib = function (){ //new library
 
 	};
 
-	var stringToNumber = function (sNum){ //takes a string version of a number value and returns the actual Number
+	var stringToNumber = function (stringNum){ //takes a string version of a number value and returns the actual Number
 
-		var num = parseFloat(sNum); //parseFloat returns a number from a string value regardless if it has a decimal or not. parseInt returns only integers
+		var num = parseFloat(stringNum); //parseFloat returns a number from a string value regardless if it has a decimal or not. parseInt returns only integers
 
 		return num; //returns the number version of a stringified number
 	};
