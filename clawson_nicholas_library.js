@@ -47,12 +47,13 @@ var nixLib = function (){ //new library
 	var checkURL = function (url){ //checking if a given URL matches standard web address syntax
 
 		/* RegExp below explained:
-		^([https?:\/\/])? checks if beginning of string begins with http:// or https://. it is optional. 
-		([www\.])? checks for "www." it is optional.
+		^(?:http:\/\/])? checks if beginning of string begins with http:// or https://. it is optional. 
+		(?:www\.)? checks for "www." it is optional.
 		([a-zA-Z0-9\.\-]) checks site name for any alphanumerics, literal . and literal -
 		([a-zA-Z0-9]{2,4}) checks last 2 to 4 characters of domain name for any alphanumeric
 		([\/\?\$\&\=\_\.a-zA-Z0-9]?) checks for optional special characters and alphanumerics in web address following main domain name*/
-		var pattern = new RegExp("^([https?:\/\/])?([www\.])?([a-zA-Z0-9\.\-])([a-zA-Z0-9]{2,4})([\/\?\$\&\=\_\.a-zA-Z0-9]?)"); //explained above
+		var pattern = new RegExp("^(?:http:\/\/)?(?:www\.)?([a-zA-Z0-9\.\-])([a-zA-Z0-9]{2,4})([\/\?\$\&\=\_\.a-zA-Z0-9]?)"); //explained above
+    	
     	 if (pattern.test(url)){ //checking if arguement matches regular expression
 
     	 	return true; //returns true if arguement matches regular expression
@@ -61,6 +62,20 @@ var nixLib = function (){ //new library
 
     	 	return false; //returns false if arguement does not match regualar expression
     	 };
+
+	};
+
+	var switchChar = function (list, separator, replace){ //checking a given list for a given character and replacing it with another given character
+
+		/*RegEx below expained:
+		separator is the exising character in the list being passed in as needing replaced. 
+		'g' searches for all instances of this character instead of just first instance and links to var text. */
+		var text = new RegExp(separator, 'g');//explained above
+		
+		var newString = list.replace(text, replace);//replaces all instances of separator and changes to replace
+
+		return newString; //returns the new string with replacement characters
+
 
 	};
 
@@ -83,6 +98,7 @@ var nixLib = function (){ //new library
 		"checkPhone": checkPhone, //returns checkPhone function to be used outside of library
 		"checkEmail": checkEmail, //returns checkEmail function to be used outside of library
 		"checkURL": checkURL, //returns checkURL function to be used outside of library
+		"switchChar": switchChar,
 		"roundDecimal": roundDecimal, //returns roundDecimal function to be used outside of library
 		"stringToNumber": stringToNumber //returns stringToNumber function to be used outside of library
 	};
